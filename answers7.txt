@@ -1,0 +1,171 @@
+Que1.What is the use of JDBC in java?
+
+ Ans:-The JDBC API is a Java API that can access any kind of tabular data, especially data stored in a relational database. JDBC helps you to write Java applications that manage these three programming activities: 
+1.Connect to a data source, like a database. 
+2.Send queries  
+3.Update statements to the database.
+
+Que2.What are the steps involved in JDBC?
+
+Ans:-Here is the 7 step process to create a Java JDBC connection:-
+
+1. Import the packages:This includes uploading all the packages containing the JDBC classes, interfaces, and subclasses used during the database programming. More often than not, using import java.sql.* is enough. However, other classes can be imported if needed in the program.
+
+2. Register the drivers:Before connecting to the database,need to load or register the drivers once per database. This is done to create a communication channel with the database. Loading a driver can be done in two ways:
+Class.forName()
+DriverManager.registerDriver()
+
+3. Establish a connection:The getConnection() method is used to create a connection object that will correspond to a physical connection with the database. To get the getConnection() to access the database, the three parameters are a 
+1.username 
+2.string data type URL
+3.password. 
+Two methods can be used to achieve this:
+
+getConnection(URL, username, password): This uses three parameters URL, a password, and a username
+
+getConnection(URL): This has only one parameter - URL. The URL has both a username and password. There are several JDBC connection strings for different relational databases and some are listed below: a. IBM DB2 database: jdbc:db2://HOSTNAME:PORT/DATABASE_NAME b. Oracle database: jdbc:oracle:thin:@HOST_NAME:PORT:SERVICE_NAME c. My SQL database: jdbc:mysql://HOST_NAME:PORT/DATABASE_NAME
+
+4. Create a statement:The statement can now be created to perform the SQL query when the connection has been established. There are three statements from the createStatement method of the connection class to establish the query. 
+These statements are
+
+4.1.Statement: This is used to create simple SQL statements with no parameter. An example is: Statement statemnt1 = conn.createStatement();. This statement returns the ResultSet object.
+
+4.2.PreparedStatement: This extends the Statement interface. It improves the application's performance because it has more features and compiles the query only once. It is used for precompiled SQL statements that have parameters.
+
+4.3.CallableStatement: CallableStatements also extends the PreparedStatement interface. It is used for SQL statements with parameters that invoke procedure or function in the database. It is simply created by calling the prepare all method of the connection object.
+
+5. Execute the query:This uses a type statement object to build and submit SQL statements to a database. It has four distinct methods:
+
+ResultSet executeQuery(String sql)
+executeUpdate(String sql)
+execute(String sql)
+executeBatch()
+6. Retrieve results:When queries are executed using the executeQuery() method, it produces results stored in the ResultSet object. The ResultSet object is then used to access the retrieved data from the database.
+
+7. Close the connections:The JDBC connection can now be closed after all is done. The resource has to be closed to avoid running out of connections. It can be done automatically using ‘conn.close();’. But for versions of Java 7 and above, it can be closed using a try-catch block
+
+Que3.What are the types of statement in JDBC in java?
+
+Ans:-Once a connection is obtained interact with the database. The JDBC Statement, CallableStatement, and PreparedStatement interfaces define the methods and properties that enable to send SQL or PL/SQL commands and receive data from  database.
+
+PreparedStatement:-Use this when plan to use the SQL statements many times. The PreparedStatement interface accepts input parameters at runtime.
+
+CallableStatement:-Use this when want to access the database stored procedures. The CallableStatement interface can also accept runtime input parameters.
+
+Que4.What is Servlet in Java?
+
+Ans:-Servlet in Java:-
+1.Servlet is a technology which is used to create a web application.
+2.Servlet is an API that provides many interfaces and classes including documentation.
+3.Servlet is an interface that must be implemented for creating any Servlet.
+4.Servlet is a class that extends the capabilities of the servers and responds to the incoming requests. It can respond to any requests.
+5.Servlet is a web component that is deployed on the server to create a dynamic web page.
+
+Que5.Explain the life Cycle of servlet?
+
+Ans:-Life Cycle of a Servlet (Servlet Life Cycle)
+The web container maintains the life cycle of a servlet instance. 
+
+1)Servlet class is loaded.
+2)Servlet instance is created.
+3)init method is invoked.
+4)service method is invoked.
+5)destroy method is invoked.
+
+
+1) Servlet class is loaded:-The classloader is responsible to load the servlet class. The servlet class is loaded when the first request for the servlet is received by the web container.
+
+2) Servlet instance is created:-The web container creates the instance of a servlet after loading the servlet class. The servlet instance is created only once in the servlet life cycle.
+
+3) init method is invoked:-The web container calls the init method only once after creating the servlet instance. The init method is used to initialize the servlet. It is the life cycle method of the javax.servlet.Servlet interface. Syntax of the init method:-
+public void init(ServletConfig config) throws ServletException  
+
+4) service method is invoked:-The web container calls the service method each time when request for the servlet is received. If servlet is not initialized, it follows the first three steps as described above then calls the service method. If servlet is initialized, it calls the service method. Notice that servlet is initialized only once. The syntax of the service method :-
+public void service(ServletRequest request, ServletResponse response)   
+  throws ServletException, IOException  
+
+5) destroy method is invoked:-The web container calls the destroy method before removing the servlet instance from the service. It gives the servlet an opportunity to clean up any resource for example memory, thread etc. The syntax of the destroy method:-
+public void destroy()  
+
+Que6.Explain the difference between the RequestDispatcher.forward() and HttpServletResponse.sendRedirect() methods?
+
+Ans:-Difference between SendRedirect method and RequestDispatcher forward method. 
+1.The forward () method of the RequestDispatcher works on the server-side, while the SendRedirect() method works on the client-side.
+
+2.Request dispatcher works on the request object, while SendRedirect() works on the response object.
+
+3.The forward() method is also significantly faster than the SendRedirect(). This is because, unlike the forward() method, the SendRedirect() method necessitates two browser requests instead of one.
+
+4.When the SendRedirect() method is used, the original URL is always changed. However, when the forward() method is applied, the original URL remains unchanged.
+
+Que7.What is the purpose of the doGet() and doPost() methods in a servlet?
+
+Ans:-doGet and doPost are methods of the javax.servlet.http.HttpServlet class that are used to handle HTTP GET and POST requests, respectively.
+
+The doGet method is called by the server (via the service method) when the client requests a GET request. It is used to retrieve information from the server.
+
+The doPost method is called by the server (via the service method) when the client requests a POST request. It is used to send information to the server.
+
+Que8.Explain the JSP Model-View-Controller (MVC) architecture.
+
+Ans:-JSP Model-View-Controller (MVC) architecture
+
+MVC stands for Model View and Controller. It is a design pattern that separates the business logic, presentation logic and data.
+
+Controller:-Controller acts as an interface between View and Model. Controller intercepts all the incoming requests.
+
+Model:-Model represents the state of the application i.e. data. It can also have business logic.
+
+View:-View represents the presentaion i.e. UI(User Interface).
+
+View->Controller->Model->Database
+
+Model Layer:-
+This is the data layer which consists of the business logic of the system.
+It consists of all the data of the application
+It also represents the state of the application.
+It consists of classes which have the connection to the database.
+The controller connects with model and fetches the data and sends to the view layer.
+The model connects with the database as well and stores the data into a database which is connected to it.
+
+View Layer:-
+This is a presentation layer.
+It consists of HTML, JSP, etc. into it.
+It normally presents the UI of the application.
+It is used to display the data which is fetched from the controller which in turn fetching data from model layer classes.
+This view layer shows the data on UI of the application.
+
+Controller Layer:-
+It acts as an interface between View and Model.
+It intercepts all the requests which are coming from the view layer.
+It receives the requests from the view layer and processes the requests and does the necessary validation for the request.
+This requests is further sent to model layer for data processing, and once the request is processed, it sends back to the controller with required information and displayed accordingly by the view.
+
+
+Que9.What are some of the advantages of Servlets?
+
+Ans:-Some of the advantages are as follows::
+
+1.Portability
+2.Powerful
+3.Efficient
+4.Safe
+5.Integration
+6.Extensibility
+7.Inexpensive
+
+1.Portability:-Servlets are highly portable across operating systems and server platforms.develop a servlet on a Windows machine running the Tomcat server or any other web server and later deploy that servlet effortlessly on any other operating system like a Linux machine running on any other web or Application server. Servlets are Write Once, Run Anywhere (WORA).
+
+2.Powerful:-Servlets are powerful when compared to CGI programs. Servlets can talk directly to the web server while CGI programs can’t. Servlets can share data with each other, make database connection pools, etc. Servlets can maintain the session by using the session tracking mechanism which helps to maintain information from request to request.
+
+3.Efficient:-Servlets are highly efficient. When the servlet gets loaded in the server, it remains in the server’s memory as a single object instance. Servlets handle requests using multiple concurrent threads, but only a single copy of the servlet class. Multiple concurrent requests are handled by separate threads so servlets are highly efficient and scalable.
+
+4.Safe:-Servlets inherit the strong type safety features from the Java language. Java’s automatic garbage collection and lack of pointers mean that servlets are generally safe from memory management problems. Servlets can easily handle errors and abnormal conditions using Java’s exception-handling mechanism. If any exception occurs then it will throw an exception.
+
+Que10.What are the limitations of JSP?
+
+Ans:-limitations of JSP
+It is very difficult for developers to perform database connectivity in JSP.
+As the JSP is compiled on the server, it is not memory and time-efficient.
+It is hard to track errors in JSP files because they are an extension to Servlets. ...
+As JSP is an HTML file, it doesn't provide many features.
